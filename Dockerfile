@@ -32,3 +32,15 @@ USER wgtest
 
 ENTRYPOINT ["/bin/sh", "-c", "sudo wg-quick up wg0 && exec \"$@\"", "--"]
 
+
+docker run --rm \
+  --name=wireguard-client \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -v $(pwd)/wireguard_confs:/config/wg_confs \
+  -v /lib/modules:/lib/modules \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+  test-wireguard
