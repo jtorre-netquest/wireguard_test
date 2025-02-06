@@ -10,16 +10,24 @@ node {
         checkout scm
     }
     
-    stage('Build Image') {
+    stage('Build Image') {custom
         // Se construye la imagen usando el Dockerfile ubicado en dockerfileDir
-        customImage = docker.build("netquest/${imageName}:latest", dockerfileDir)
+        customImage = docker.build("netquest/${imageName}:latest", "-f custom.Dockerfile ${dockerfileDir}")
     }
     
     stage('Run Container and Test') {
         // Se ejecuta el contenedor, se le agrega la capacidad NET_ADMIN y se invoca el comando para ejecutar main.py
-        sh "docker run --rm --privileged \
-        -v ${mountDir}:/wgtest \
-        netquest/${imageName}:latest ${imageTestCommand}"
+        sh "docker run --rm \
+    --name=wireguard-client \
+    --cap-add=NET_ADMIN \
+    --cap-add=SYS_MODULE \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ=Etc/UTC \
+    -v $(pwd)/config:/config \
+    --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+    netquest/${imageName}:latest ${imageTestCommand}"
+        
     }
 }
 
