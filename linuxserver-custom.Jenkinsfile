@@ -18,8 +18,8 @@ node {
         sh "docker run --name=wg-client \
             --cap-add=NET_ADMIN \
             --network=wireguard-net \
-            -v $(pwd)/wireguard.conf:/config/wg_confs/wg0.conf \
-            -v $(pwd)/main.py:/app/main.py \
+            -v \$(pwd)/wireguard.conf:/config/wg_confs/wg0.conf \
+            -v \$(pwd)/main.py:/app/main.py \
             --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
             netquest/${imageName}:latest \
             ${imageTestCommand}"
