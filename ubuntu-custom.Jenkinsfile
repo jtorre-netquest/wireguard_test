@@ -15,7 +15,7 @@ node {
     }
     
     stage('Run Container and Test') {
-        sh "docker run --rm --name=wg-client \
+        sh "docker run --privileged --rm --name=wg-client \
             --cap-add=NET_ADMIN \
             -v ./main.py:/app/main.py \
             -v ./wireguard.conf:/etc/wireguard/wg0.conf \
