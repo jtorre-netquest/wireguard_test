@@ -17,7 +17,6 @@ node {
     stage('Run Container and Test') {
         sh "docker run --name=wg-client \
             --cap-add=NET_ADMIN \
-            --network=wireguard-net \
             -v ./wireguard.conf:/config/wg_confs/wg0.conf \
             -v ./main.py:/app/main.py \
             --sysctl='net.ipv4.conf.all.src_valid_mark=1' \
