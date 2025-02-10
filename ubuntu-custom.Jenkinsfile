@@ -8,6 +8,8 @@ node("ubuntu24-fleet") {
 
     stage('Clone Repo') {
         checkout scm
+
+        sh "whoami"
     }
     
     stage('Build Image') {
