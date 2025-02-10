@@ -15,13 +15,15 @@ node {
     }
     
     stage('Run Container and Test') {
-        sh "docker run --name=wg-client \
+        sh "docker container stop wg-client && docker container rm wg-client"
+        sh "docker run --rm --name=wg-client \
             --cap-add=NET_ADMIN \
             -v ./main.py:/app/main.py \
             -v ./wireguard.conf:/etc/wireguard/wg0.conf \
             --sysctl='net.ipv4.conf.all.src_valid_mark=1' \
             netquest/${imageName}:latest \
             ${imageTestCommand}"
+        sh "docker container ls -a"
         
     }
 }
