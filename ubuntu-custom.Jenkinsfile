@@ -1,4 +1,4 @@
-node {
+node("ubuntu24-fleet") {
 
     def customImage
     def imageName = 'wireguard-client'
