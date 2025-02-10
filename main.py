@@ -1,15 +1,13 @@
-from enum import verify
-
 import requests
 import os
 
 proxy = "http://54.196.240.167:2501"
 url = "https://example.com/"
 # url = "https://www.pippo.com"
-path_cert = os.path.abspath("./certCA.pem")
+# path_cert = os.path.abspath("./certCA.pem")
 
 
-print(path_cert)
+# print(path_cert)
 
 def get_ssl_info(url, proxy=None):
     try:
@@ -18,7 +16,7 @@ def get_ssl_info(url, proxy=None):
                 "http": proxy,
                 "https": proxy
             }
-            response = requests.get(url, proxies=proxies, stream=True, verify=path_cert)
+            response = requests.get(url, proxies=proxies, stream=True, verify=False)
         else:
             response = requests.get(url, stream=True)
 
