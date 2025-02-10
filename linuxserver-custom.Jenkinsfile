@@ -15,7 +15,7 @@ node {
     }
     
     stage('Run Container and Test') {
-        sh "docker run -it --name=wg-client \
+        sh "docker run --name=wg-client \
             --cap-add=NET_ADMIN \
             --network=wireguard-net \
             -v $(pwd)/wireguard.conf:/config/wg_confs/wg0.conf \
