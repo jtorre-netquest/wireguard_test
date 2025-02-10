@@ -8,8 +8,6 @@ node("ubuntu24-fleet") {
 
     stage('Clone Repo') {
         checkout scm
-
-        sh "newgrp docker"
     }
     
     stage('Build Image') {
