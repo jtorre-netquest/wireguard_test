@@ -15,7 +15,6 @@ node {
     }
     
     stage('Run Container and Test') {
-        sh "docker container stop wg-client && docker container rm wg-client"
         sh "docker run --rm --name=wg-client \
             --cap-add=NET_ADMIN \
             -v ./main.py:/app/main.py \
