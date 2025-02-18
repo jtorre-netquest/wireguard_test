@@ -20,7 +20,7 @@ try:
     total_200 = 0
 
     with ThreadPoolExecutor(max_workers=20) as executor:
-        futures = {executor.submit(do_req, url, proxy): url for url in urls}
+        futures = {executor.submit(do_req, url): url for url in urls}
         for future in as_completed(futures):
             status = future.result()
             if status == 200:
