@@ -21,4 +21,4 @@ def get_ssl_info(url):
 url = "https://4411.flitsmeister.app/nl/zones"
 
 print("---------- PROXY ----------")
-get_ssl_info(url, proxy)
+get_ssl_info(url)
