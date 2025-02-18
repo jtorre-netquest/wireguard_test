@@ -1,13 +1,6 @@
 import requests
 import os
-
-proxy = "http://wgpp-us-01a.om-staging.wkp.io:2501"
-url = "https://example.com/"
-# url = "https://www.pippo.com"
-# path_cert = os.path.abspath("./certCA.pem")
-
-
-# print(path_cert)
+import sys
 
 def get_ssl_info(url, proxy=None):
     try:
@@ -30,6 +23,16 @@ def get_ssl_info(url, proxy=None):
     except Exception as e:
         print(f"Error: {e}")
 
+
+if len(sys.argv) != 2:
+    print("Use: python main.py <proxy_host:port>")
+    sys.exit(1)
+
+proxy = sys.argv[1]
+
+proxy = "http://" + proxy
+
+url = "https://example.com/"
 
 print("--------- CON PROXY ----------")
 get_ssl_info(url, proxy)
