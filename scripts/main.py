@@ -32,7 +32,8 @@ proxy = sys.argv[1]
 
 proxy = "http://" + proxy
 
-url = "https://example.com/"
+# url = "https://example.com/"
+url = "https://4411.flitsmeister.app/nl/zones"
 
 print("--------- CON PROXY ----------")
 get_ssl_info(url, proxy)
