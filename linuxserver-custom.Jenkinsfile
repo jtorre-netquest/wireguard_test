@@ -1,4 +1,3 @@
-// Definición de parámetros para el pipeline
 properties([
     parameters([
         string(name: 'PROXY', defaultValue: 'wgpp-us-01a.om-staging.wkp.io:2501', description: 'proxy to use (host:port)'),
@@ -38,7 +37,7 @@ node("ubuntu24-fleet") {
             -v ${WORKSPACE}/wireguard.conf:/app/main.py \
             --sysctl='net.ipv4.conf.all.src_valid_mark=1' \
             netquest/${imageName}:latest \
-            ${imageTestCommand}"
+            ${imageTestCommand}
         """
         sh "docker container ls -a"
     }
