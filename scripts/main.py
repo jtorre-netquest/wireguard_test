@@ -1,7 +1,7 @@
 import requests
 import os
 
-proxy = "http://54.196.240.167:2501"
+proxy = "http://wgpp-us-01a.om-staging.wkp.io:2501"
 url = "https://example.com/"
 # url = "https://www.pippo.com"
 # path_cert = os.path.abspath("./certCA.pem")
@@ -16,7 +16,7 @@ def get_ssl_info(url, proxy=None):
                 "http": proxy,
                 "https": proxy
             }
-            response = requests.get(url, proxies=proxies, stream=True, verify=False)
+            response = requests.get(url, proxies=proxies, stream=True)
         else:
             response = requests.get(url, stream=True)
 
