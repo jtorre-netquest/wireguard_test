@@ -34,7 +34,7 @@ node("ubuntu24-fleet") {
             docker run --rm --name=wg-client \
             --cap-add=NET_ADMIN \
             -v ${WORKSPACE}/scripts:/app/scripts/ \
-            -v ${WORKSPACE}/wireguard.conf:/app/main.py \
+            -v ${WORKSPACE}/wireguard.conf:/config/wg_confs/wg0.conf \
             --sysctl='net.ipv4.conf.all.src_valid_mark=1' \
             netquest/${imageName}:latest \
             ${imageTestCommand}
