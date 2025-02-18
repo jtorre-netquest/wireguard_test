@@ -3,31 +3,15 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def do_req(url, proxy=None):
+def do_req(url):
     try:
-        if proxy:
-            proxies = {
-                "http": proxy,
-                "https": proxy
-            }
-            response = requests.get(url, proxies=proxies, stream=True)
-        else:
-            response = requests.get(url, stream=True)
-
+        response = requests.get(url, stream=True)
         return response.status_code
     except Exception as e:
         return None
 
 
 try:
-
-    if len(sys.argv) != 2:
-        print("Use: python main.py <proxy_host:port>")
-        sys.exit(1)
-
-    proxy = sys.argv[1]
-    proxy = "http://" + proxy
-
     file_name = "hosts.reduced"
     with open(file_name, "r") as f:
         urls = [line.strip() for line in f if line.strip()]
