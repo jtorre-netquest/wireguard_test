@@ -20,6 +20,9 @@ node("ubuntu24-fleet") {
     
     stage('Copy Wireguard Conf') {
         writeFile file: 'wireguard.conf', text: params.WIREGUARD_CONF
+        sh """
+            cat wireguard.conf 
+        """
     }
     
     stage('Build Image') {
