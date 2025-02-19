@@ -9,7 +9,7 @@ def do_req(url, proxy):
             "http": proxy,
             "https": proxy
         }
-        response = requests.get(url, proxies=proxies, stream=True)
+        response = requests.get(url, proxies=proxies)
         return response.status_code
     except Exception as e:
         return None
