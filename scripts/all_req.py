@@ -24,7 +24,7 @@ try:
     proxy = "http://" + proxy
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_name = os.path.join(script_dir, 'hosts.reduced')
+    file_name = os.path.join(script_dir, 'hosts')
     print(file_name)
     with open(file_name, "r") as f:
         urls = [line.strip() for line in f if line.strip()]
