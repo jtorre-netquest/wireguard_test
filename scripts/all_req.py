@@ -23,7 +23,8 @@ try:
     proxy = sys.argv[1]
     proxy = "http://" + proxy
 
-    file_name = "hosts.reduced"
+    file_name = os.path.abspath("./hosts.reduced")
+    print(file_name)
     with open(file_name, "r") as f:
         urls = [line.strip() for line in f if line.strip()]
 
