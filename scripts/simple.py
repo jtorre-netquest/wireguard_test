@@ -8,7 +8,7 @@ def get_ssl_info(url, proxy):
             "http": proxy,
             "https": proxy
         }
-        response = requests.get(url, proxies=proxies, stream=True)
+        response = requests.get(url, proxies=proxies)
 
         print(response.status_code)
         cert = response.raw.connection.sock.getpeercert()
