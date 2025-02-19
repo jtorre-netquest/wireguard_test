@@ -1,5 +1,6 @@
 properties([
     parameters([
+        string(name: 'PROXY', defaultValue: '10.128.0.1:2501', description: 'proxy to use (host:port)'),
         text(name: 'WIREGUARD_CONF', description: 'wireguard client config'),
         choice(name: 'SCRIPT_CHOICE', choices: ['simple.py', 'all_req.py'], description: 'script to run')
     ])
@@ -28,7 +29,7 @@ node("ubuntu24-fleet") {
     }
     
     stage('Run Container and Test') {
-        def imageTestCommand = "python /app/scripts/${params.SCRIPT_CHOICE}"
+        def imageTestCommand = "python /app/scripts/${params.SCRIPT_CHOICE} {params.PROXY}"
         sh """
             docker run --rm --name=wg-client \
             --cap-add=NET_ADMIN \
