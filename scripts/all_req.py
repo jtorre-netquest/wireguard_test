@@ -32,6 +32,7 @@ try:
     total_urls = len(urls)
     total_200 = 0
     total_not_200 = 0
+    not200= []
 
     with ThreadPoolExecutor(max_workers=20) as executor:
         futures = {executor.submit(do_req, url, proxy): url for url in urls}
@@ -41,9 +42,13 @@ try:
                 total_200 += 1
             else:
                 total_not_200 += 1
+                not200.append(futures[future])
 
     print(f"Total URLs: {total_urls}")
     print(f"Total 200: {total_200}")
     print(f"Total NOT 200: {total_not_200}")
+    print("-------- URLS --------")
+    for url in not200:
+        print(url)
 except Exception as e:
     print(f"An error occurred: {e}")
