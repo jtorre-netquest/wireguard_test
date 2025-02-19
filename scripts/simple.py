@@ -2,9 +2,13 @@ import requests
 import os
 import sys
 
-def get_ssl_info(url):
+def get_ssl_info(url, proxy):
     try:
-        response = requests.get(url, stream=True)
+        proxies = {
+            "http": proxy,
+            "https": proxy
+        }
+        response = requests.get(url, proxies=proxies, stream=True)
 
         print(response.status_code)
         cert = response.raw.connection.sock.getpeercert()
@@ -16,9 +20,15 @@ def get_ssl_info(url):
     except Exception as e:
         print(f"Error: {e}")
 
+if len(sys.argv) != 2:
+    print("Use: python main.py <proxy_host:port>")
+    sys.exit(1)
+
+proxy = sys.argv[1]
+proxy = "http://" + proxy
 
 # url = "https://example.com/"
 url = "https://4411.flitsmeister.app/nl/zones"
-
 print("---------- PROXY ----------")
-get_ssl_info(url)
+get_ssl_info(url, proxy)
+
