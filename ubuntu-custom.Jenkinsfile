@@ -6,7 +6,7 @@ properties([
     ])
 ])
 
-node("ubuntu24-fleet") {
+node("ec2-fleet") {
 
     def customImage
     def imageName = 'wireguard-client'
