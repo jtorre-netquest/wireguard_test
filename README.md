@@ -1,4 +1,3 @@
-# create a readme that explains all the repo
 # Wireguard Client Testing Environment
 
 This repository contains Docker-based testing environments for Wireguard VPN clients. It provides two different implementations using different base images and configurations.
