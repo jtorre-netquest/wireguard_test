@@ -31,6 +31,8 @@ node("ec2-fleet") {
     stage('Run Container and Test') {
         def imageTestCommand = "python /app/scripts/${params.SCRIPT_CHOICE} ${params.PROXY}"
         sh """
+            set -e
+            
             docker run --rm --name=wg-client \
             --cap-add=NET_ADMIN \
             -v ${WORKSPACE}/scripts:/app/scripts/ \

@@ -15,13 +15,13 @@ def get_ssl_info(url, proxy):
         issuer = dict(x[0] for x in cert.get("issuer", []))
         subject_alt_names = cert.get("subjectAltName", [])
 
-        print("Issuer:", issuer)
-        print("Subject Alternative Names:", subject_alt_names)
+        print("Issuer:", issuer, flush=True)
+        print("Subject Alternative Names:", subject_alt_names, flush=True)
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error: {e}", flush=True)
 
 if len(sys.argv) != 2:
-    print("Use: python main.py <proxy_host:port>")
+    print("Use: python simple.py <proxy_host:port>", flush=True)
     sys.exit(1)
 
 proxy = sys.argv[1]
@@ -29,6 +29,6 @@ proxy = "http://" + proxy
 
 # url = "https://example.com/"
 url = "https://4411.flitsmeister.app/nl/zones"
-print("---------- PROXY ----------")
+print("---------- PROXY ----------", flush=True)
 get_ssl_info(url, proxy)
 
